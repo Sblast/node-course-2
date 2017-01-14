@@ -1,8 +1,7 @@
 const 	express 		= require('express'),
 		//template engine 
 		hbs				= require('hbs'),
-		//fs - file system
-		//built in node
+		//fs - file system - built in node object
 	 	fs 				= require('fs');
 
 
@@ -35,7 +34,7 @@ app.set('view engine', 'hbs');
 //Express serving static files
 app.use(express.static(__dirname + '/public'));
 
-//Log Server requests 
+//Logs Server requests 
 app.use((req,res,next) => {
 	var now = new Date().toString();
 	var log = `${now}: ${req.method} ${req.url}`;
@@ -66,7 +65,7 @@ hbs.registerHelper('screamIt', (text) => {
   return text.toUpperCase();
 });
 
-
+//======================================
 //Routes
 //======================================
 
@@ -77,11 +76,14 @@ app.get('/', (req, res) => {
   });
 });
 
+
 app.get('/about', (req, res) => {
   res.render('about.hbs', {
     pageTitle: 'About Page'
   });
 });
+
+
 
 // /bad - send back json with errorMessage
 app.get('/bad', (req, res) => {
@@ -89,6 +91,14 @@ app.get('/bad', (req, res) => {
     errorMessage: 'Unable to handle request'
   });
 });
+
+// Always last route - 404
+app.get('*', (req, res) => {
+  res.send({
+    errorMessage: '404'
+  });
+});
+
 
 //Express server, port is the const defined above
 app.listen(port, () => {
