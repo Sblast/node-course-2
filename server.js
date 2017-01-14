@@ -8,7 +8,7 @@ const 	express 		= require('express'),
 
 //taking the environment variables from the hosting server
 //we don't have it locally so add: || 3000
-const port = port.process.env.PORT || 3000;
+const port = process.env.PORT || 3000;
 
 //starting express
 var app = express();
@@ -92,5 +92,5 @@ app.get('/bad', (req, res) => {
 
 //Express server, port is the const defined above
 app.listen(port, () => {
-  console.log('Server is up on port 3000');
+  console.log(`Server is up on port ${port}`);
 });
