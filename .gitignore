@@ -1,0 +1,8 @@
+.git/
+!resources/
+node_modules/
+public/*styl
+.git.back/
+gulpfile.js
+*sublime-workspace
+*sublime-project
