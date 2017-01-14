@@ -94,9 +94,8 @@ app.get('/bad', (req, res) => {
 
 // Always last route - 404
 app.get('*', (req, res) => {
-  res.send({
-    errorMessage: '404'
-  });
+  res.send("404 - Page not found")
+
 });
 
 
